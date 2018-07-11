@@ -1,5 +1,7 @@
 package com.tolovesoul.config;
 
+import javax.servlet.annotation.MultipartConfig;
+
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.springframework.beans.factory.annotation.Autowired;
