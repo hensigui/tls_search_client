@@ -17,9 +17,9 @@ public class SeachServiceImpl implements SearchService{
 	private Client client;
 
 	@Override
-	public String search(String str, String start) {
+	public String search(String str, String start,String cx) {
 		try {
-			Object[] objects = client.invoke("search", str , start);
+			Object[] objects = client.invoke("search", str , start , cx);
 			return (String) objects[0];
 		} catch (Exception e) {
 			e.printStackTrace();

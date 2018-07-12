@@ -1,5 +1,8 @@
 package com.tolovesoul.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.annotation.MultipartConfig;
 
 import org.apache.cxf.endpoint.Client;
@@ -34,4 +37,13 @@ public class TlsClientConfig {
 	    client.getOutInterceptors().add(addHeaderInterceptor);
 	    return client;
 	}
+	
+    /**
+     * 用于存放type-cx映射
+     * @return
+     */
+    @Bean(name="typeCxMap")
+    public Map<String,String> typeCxMap(){
+    	return new HashMap<String,String>();
+    }
 }

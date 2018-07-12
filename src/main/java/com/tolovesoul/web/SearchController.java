@@ -1,5 +1,9 @@
 package com.tolovesoul.web;
 
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +18,16 @@ import com.tolovesoul.service.SearchService;
  */
 @RestController
 public class SearchController {
+	/**
+	 * type-cx映射表
+	 */
+	@Resource(name="typeCxMap")
+	private Map<String,String> typeCxMap;
+	
 	@Autowired
 	private SearchService searchService;
-	@GetMapping("/search/{query}")
-	public String testSearch(@PathVariable(value="query") String query) {
-		return searchService.search(query, "0");
+	@GetMapping("/search/{type}/{query}")
+	public String testSearch(@PathVariable(value="type") String type ,@PathVariable(value="query") String query) {
+		return searchService.search(query, "0",typeCxMap.get(type));
 	}
 }

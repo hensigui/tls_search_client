@@ -13,5 +13,5 @@ public interface SearchService {
 	 * @param start 从何处开始
 	 * @return
 	 */
-	public String search(String str, String start);
+	public String search(String str, String start,String cx);
 }

@@ -31,7 +31,7 @@ public class ImageController {
 	
 	
 	@PostMapping("/upload")
-	public String updateImage(MultipartFile picture,Model model) {
+	public String updateImage(MultipartFile picture,Model model,String type) {
 	    // 把图片保存到图片目录下
 	    // 保存图片，这个图片有的时候文件名可能会重复，你保存多了会把原来的图片给覆盖掉，这就不太合适了。
 	    // 所以为每个文件生成一个新的文件名
@@ -59,7 +59,7 @@ public class ImageController {
 	    	text = text.replaceAll("[/%\",<>&();+-\\[\\]{}]", "");
 	    	//text = text.replaceAll("[/]", " ");
 	    	System.out.println("猜想："+text);
-		    return "redirect:../search/"+URLEncoder.encode(text,"utf-8");
+		    return "redirect:/search/"+type+"/"+URLEncoder.encode(text,"utf-8");
     	} catch (Exception e) {
     		model.addAttribute("errorInfo", "没有搜索到和图片关联的内容");
 			return "../errorInfo";
