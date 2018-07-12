@@ -41,18 +41,19 @@ public class ImageController {
 	
 	
 	@PostMapping("/upload")
-	public String updateImage(MultipartFile picture,Model model,String type) {
+	public String updateImage(MultipartFile search,Model model,String copyType) {
+		String type = copyType;
 	    // 把图片保存到图片目录下
 	    // 保存图片，这个图片有的时候文件名可能会重复，你保存多了会把原来的图片给覆盖掉，这就不太合适了。
 	    // 所以为每个文件生成一个新的文件名
 	    String picName = UUID.randomUUID().toString();
 	    // 截取文件的扩展名(如.jpg)
-	    String oriName = picture.getOriginalFilename();
+	    String oriName = search.getOriginalFilename();
 	    String extName = oriName.substring(oriName.lastIndexOf("."));
 	    // 保存文件
-	    File file = new File("E:\\image\\" + picName + extName);
+	    File file = new File("E:\\images\\" + picName + extName);
 	    try {
-			picture.transferTo(file);
+	    	search.transferTo(file);
 		} catch (Exception e) {
 			model.addAttribute("errorInfo", e.getStackTrace().toString());
 			return "../errorInfo";

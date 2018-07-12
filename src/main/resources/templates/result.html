@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>${query!}-动漫绅士搜索结果</title>
+<meta name="Author" content="SHENSHIDM">
+<meta name="keywords" content="绅士搜索|动漫搜索|绅士资源搜索" />
+<meta name="description" content="绅士搜索，搜索绅士资源" />
+<link rel="stylesheet" href="/css/baiduyun.css">
+<script src="/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+
+	function loadData(q,type,start){
+		$.get("/search/"+type+"/"+q+"/"+start,function(result){
+			if(!result.success){
+				alert(result.errorInfo);
+			}else{
+				$("#result").children().remove();
+				$("#result").append("<font>搜索结果：</font><hr style='margin-top: 2px; margin-bottom: 10px;'></hr>");
+				$.each(result.rows,function(i,val){
+					var di=$("<p>"+"<a style='font-size:16px;color:#1f4fcd;text-decoration:underline;' target='_blank' href='"+val.unescapedUrl+"'>"+val.title+"</a></br>"+
+							  "<span style='font-size:14px'>"+val.content+"</span></br>"+
+							  "<font color=black>"+val.unescapedUrl+"</font>"+
+							"</p>");
+					$("#result").append(di);
+				});
+				$("#loading").remove();
+				$("#pa").show();
+			}
+
+		},"json");
+	}
+	
+	loadData("${query!}","${type!}",0);
+
+</script>
+</head>
+<body>
+
+
+<div class="contentBody">
+	<div class="w960">
+		<div class="content">
+			<div id="loading"><img src="/images/loading.gif" />&nbsp;查询中,如果长时间未出结果，请重新搜索...</div>
+			<div id="result" class="result">
+			</div>
+			<div id="pa" class="pagination" style="display: none;">
+				  <ul >
+				    <li><a href="javascript:loadData('${query!}','${type!}',0)">第1页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',10)">第2页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',20)">第3页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',30)">第4页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',40)">第5页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',50)">第6页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',60)">第7页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',70)">第8页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',80)">第9页</a></li>
+				    <li><a href="javascript:loadData('${query!}','${type!}',90)">第10页</a></li>
+				  </ul>
+			</div>
+		</div>
+		<div class="ad">
+			
+		</div>
+	</div>
+</div>
+
+
+
+</body>
+</html>

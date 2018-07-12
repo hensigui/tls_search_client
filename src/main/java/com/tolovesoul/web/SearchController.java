@@ -26,8 +26,16 @@ public class SearchController {
 	
 	@Autowired
 	private SearchService searchService;
-	@GetMapping("/search/{type}/{query}")
-	public String testSearch(@PathVariable(value="type") String type ,@PathVariable(value="query") String query) {
-		return searchService.search(query, "0",typeCxMap.get(type));
+	
+	/**
+	 * 搜索接口
+	 * @param type 种类
+	 * @param query 搜索关键字
+	 * @param page 页码
+	 * @return
+	 */
+	@GetMapping("/search/{type}/{query}/{page}")
+	public String testSearch(@PathVariable(value="type") String type ,@PathVariable(value="query") String query,@PathVariable(value="page") String page) {
+		return searchService.search(query, page,typeCxMap.get(type));
 	}
 }
