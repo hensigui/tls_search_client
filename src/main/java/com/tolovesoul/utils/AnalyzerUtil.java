@@ -60,7 +60,7 @@ public class AnalyzerUtil {
             //保存相应词汇
             CharTermAttribute cta = stream.addAttribute(CharTermAttribute.class);
             while(stream.incrementToken()){
-            	if(!stopWords.contains(cta.toString())) {
+            	if(!stopWords.contains(cta.toString())&&cta.toString().length()>1) {
             		System.out.print("[" + cta + "]");
                 }
             }
@@ -103,8 +103,8 @@ public class AnalyzerUtil {
     public static void main(String[] args) {
     	Analyzer aly1 = new SmartChineseAnalyzer();
         
-        String str = "hello kim,I am dennisit,我是 中国的人，来自四川和湖南的朋友,my email is dennisit@163.com, and my QQ is 1325103287";
-        
+        //String str = "hello kim,I am dennisit,我是 中国的人，来自四川和湖南的朋友,my email is dennisit@163.com, and my QQ is 1325103287";
+        String str = "fgo银河级阵容配置介绍 银河级副本如何打_fate/grand";
         AnalyzerUtil.displayToken(str, aly1);
     }
 }

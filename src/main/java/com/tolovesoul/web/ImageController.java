@@ -107,7 +107,7 @@ public class ImageController {
 			
 			List<Entry<String, Integer>> list = new ArrayList<Entry<String, Integer>>(termsMap.entrySet());
 			Collections.sort(list,new Comparator<Map.Entry<String,Integer>>() {
-	            //升序排序
+	            //降序排序
 	            public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
 	                return o2.getValue().compareTo(o1.getValue());
 	            }
